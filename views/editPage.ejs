@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>News Forum | </title>
+        <style type="text/css">
+            html {
+                font-family: sans-serif;
+                font-size: 100%;
+            }
+            h1 {
+                padding: 1%;
+                margin: 0%;
+                background-color: #CD5C5C;
+            }
+            .form-buttons {
+                display: flex;
+                justify-content: space-evenly;
+            }
+            .navBox {
+                padding: 1%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                background-color: #CD5C5C;
+            }
+            .homelink {
+            }
+            .newforumlink{
+            }
+            .aboutlink:hover{
+            }
+            li {list-style-type: none}
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+            form{
+                background-color: #CD5C5C;
+            }
+            .titletext{
+                position: relative;
+                font-weight: bolder;
+                font-size: 150%;
+                top: 10px;
+                left: 5%;
+            }
+            .snippettext{
+                position: relative;
+                left: 7.5%;
+            }
+            .somespace{
+                height: 25px;
+            }
+            .title_snippet_box{
+                background-color: gray;
+                border-radius: 15px;
+            }
+            .title_snippet_box:hover{
+                background-color: #CD5C5C;
+            }
+            .titletextfield{
+            }
+            .snippettextfield{
+                
+            }
+            .forumform {
+                border-radius: 10px;
+                max-width: 35%;
+                max-height: 100%;
+                border: 2px solid;
+                padding: 3%;
+            }
+            label {
+                display: block;
+                width: 100%;
+                padding: 15px;
+            }
+            input, textarea {
+                display: block;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <center>
+                <a href="/"><h1>News Forum</h1></a>
+                <div></div>
+                <h3>Edit Forum</h3>
+            </center>
+    
+    
+    
+        </header>
+        <nav>
+            <div>
+            </div>
+    
+    
+            
+        </nav>
+        <main>
+            <!-- this tag starts the form, gives the -->
+            <!-- method of sending information and the -->
+            <!-- location of form script -->
+            <center>
+            <p></p>
+            <form class="forumform" method="" action="">
+                <p>
+                    <!-- hidden inputs contain non-visual information-->
+                    <!-- here we redirect the browser to a URL after the submit button is clicked -->
+                    <input type="hidden" name="redirect" value="/" />
+                </p>
+                <p>
+                    
+                    <label class="titletextfield" for="title">Blog Title</label>
+                    <input class="titletextfield" type="text" id="title" name="title" required>
+                    <label class="snippettextfield" for="snippet">Blog Snippet:</label>
+                    <input class="snippettextfield" type="text" id="snippet" name="snippet" required>
+                    <label for="body">Blog Body:</label>
+                    <textarea id="body" required name="body" rows="12"></textarea>
+                    <div class="form-buttons">
+                    <input type="submit" value="submit"/>
+                    <input type="reset" value="clear"/>
+                    <button>Cancel</button>
+                    </div>
+                    
+                </p>
+            </form>
+            </center>
+    
+    
+        </main>
+        <script type="text/javascript">
+
+
+
+        </script>
+    </body>
+</html>
