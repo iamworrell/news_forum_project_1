@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <style>
+            .email{
+                color: red;
+            }
+            .password{
+                color: red;
+            }
+        </style>
+        <meta charset="utf-8">
+        <title>Login Form</title>
+    </head>
+    <body>
+        <div class="center">
+            <h1>Login</h1>
+            <form>
+                <div class="txt_field">
+                    <input type="text" id="email" name="email" required>
+                    <label for="email">Email</label>
+                    <div class="email"></div>
+                </div>
+                <div class="txt_field">
+                    <input type="password" id="password" name="password" required>
+                    <label for="password">Password</label>
+                    <div class="password"></div>
+                </div>
+                <div class="pass">Forgot Password</div>
+                <input type="submit" value="Login">
+                <div class="signup_link">
+                    Not a Member? <a href="/signup">Sign Up</a>
+                </div>
+            </form>
+        </div>
+    </body>
+    <script>
+        const form =  document.querySelector('form');
+        const emailError = document.querySelector('.email');
+        const passwordError = document.querySelector('.password');
+
+        form.addEventListener('submit', async (e) => {
+            //Prevent the form from submitting previous data on reload
+            //Prevent the form from reloading
+            e.preventDefault();
+            //On Submit Errors are set to ""
+            emailError.textContent = "";
+            passwordError.textContent = "";
+
+            const email = form.email.value;
+            const password = form.password.value;
+
+            try{
+                const res = await fetch('/login', {
+                    method: 'POST',
+                    body: JSON.stringify(({email: email, password: password})),
+                    headers: {'Content-Type': 'application/json'}
+                });
+
+                const data = await res.json();
+                console.log(data.errors.email);
+                console.log(data.errors.password);
+                console.log(data.user);
+                let dog = 'doggy';
+
+                if(data.errors){
+                    emailError.textContent = data.errors.email;
+                    passwordError.textContent = data.errors.password;
+                    console.log(dog);
+                }
+
+                if(data.user) {
+                    console.log('user was sent');
+                    location.assign('/')
+                }
+            }catch(err){
+                console.log(err)
+            }
+            
+        })
+    </script>
+</html>

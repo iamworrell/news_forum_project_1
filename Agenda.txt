@@ -1,0 +1,4 @@
+1. Redirect from login & signup page to '/'
+2. Upgrade UI
+3. Output User Data Conditionally
+3. Add Update Function to forum API
