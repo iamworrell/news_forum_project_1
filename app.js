@@ -168,7 +168,7 @@ app.post('/signup', async(req, res)=>{
         res.cookie('jwt', token, { httpOnly: true});
 
         //Sends the response object to the browser, however other functions can do this as well
-        res.send();
+        res.status(200).json({user: user._id});
     }catch(err){
         console.log('The err.code is', err.message);
         const errors = handleErrors(err);

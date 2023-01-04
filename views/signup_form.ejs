@@ -57,13 +57,17 @@
                 });
 
                 const data = await res.json();
-                console.log(data.errors.email);
-                console.log(data.errors.password);
+                
 
                 if(data.errors){
                     emailError.textContent = data.errors.email;
                     passwordError.textContent = data.errors.password;
                 }
+                if(data.user){
+                    location.assign('/');
+                }
+                //console.log(data.errors.email);
+                //console.log(data.errors.password);
             }catch(err){
                 console.log(err)
             }
