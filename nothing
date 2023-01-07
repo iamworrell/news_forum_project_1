@@ -1,0 +1,12 @@
+const id = req.params.id;
+    const updates = req.body;
+    const options = { new: true };
+    
+    Forum.findByIdAndUpdate(id, updates, function (err, docs) {
+        if (err){
+            console.log(err)
+        }
+        else{
+            console.log("Updated User : ", docs);
+        }
+    });

@@ -92,24 +92,7 @@ app.get('/about', protectedRoute, (req, res)=> {
     console.log('The User is on the About Page');
 });
 
-app.get('/edit/:id', protectedRoute, (req, res)=> {
-    const id = req.params.id;
-    Forum.findById(id).then((result)=>{
-        res.render('editPage.ejs', { title: 'Edit Page', editdetails: result});
-    })
-});
 
-
-// Request For a Specific Document in The Database
-app.get('/forum/:id', protectedRoute, (req, res)=> {
-    const id = req.params.id;
-    Forum.findById(id).then((result)=>{
-        res.render('forumDetails.ejs', { title: 'Details Page', details: result });
-        console.log('The User is on the Details Page');
-    }).catch((err)=>{
-        console.log(err);
-    });
-});
 
 /* Express's built-in Middleware That Takes Data from the Request Object of the URL and Parses it into the Request Body.
    Used instead of the 'body-parser' package.
@@ -118,6 +101,7 @@ app.get('/forum/:id', protectedRoute, (req, res)=> {
 app.use(express.urlencoded({ extended: true }));
 
 //Post Request
+//Create a New Forum
 app.post('/newsforumpost', protectedRoute, (req,res)=>{
     const forum = new Forum(req.body)
     console.log(req.body)
@@ -128,10 +112,47 @@ app.post('/newsforumpost', protectedRoute, (req,res)=>{
     })
 });
 
+//Update a Forum
+app.post('/update/:id', protectedRoute, (req, res)=> {
+    const id = req.params.id;
+    const updates = req.body;
+    const options = { new: true };
+    
+    Forum.findByIdAndUpdate(id, updates, options, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send(result);
+        }
+    });
+   
+})
+
+//Send Specific Forum Data to Edit Page
+app.get('/edit/:id', protectedRoute, (req, res)=> {
+    const id = req.params.id;
+    Forum.findById(id).then((result)=>{
+        res.render('editPage.ejs', { title: 'Edit Page', editdetails: result});
+    }).catch((err)=>{
+        console.log(err)
+    })
+});
+
+
+
+//Request For a Specific Document in The Database
+app.get('/forum/:id', protectedRoute, (req, res)=> {
+    const id = req.params.id;
+    Forum.findById(id).then((result)=>{
+        res.render('forumDetails.ejs', { title: 'Details Page', details: result });
+    }).catch((err)=>{
+        console.log(err);
+    });
+});
+
 // Delete A Specific Forum
 app.delete('/deleteforum/:id', protectedRoute, (req, res)=>{
     const id = req.params.id
-    console.log('The User has Deleted a Forum');
     Forum.findByIdAndDelete(id).then((result)=>{
         res.json({ redirect: '/' });
     }).catch((err)=>{
@@ -143,13 +164,11 @@ app.delete('/deleteforum/:id', protectedRoute, (req, res)=>{
 //Directs User to the Sign Up Page
 app.get('/signup', (req, res)=>{
     res.render('signup_form.ejs');
-    console.log('User is on The Signup Page');
 })
 
 //Directs User to the Login Page
 app.get('/login', (req, res)=>{
     res.render('login_form.ejs');
-    console.log('User is on The Login Page');
 })
 
 //Post Requests

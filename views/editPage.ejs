@@ -10,7 +10,7 @@
             <center>
             <p></p>
             
-            <form class="forumform" method="" action="">
+            <form class="forumform" method="POST" action="/update/<%=editdetails._id%>">
                 <p>
                     <!-- hidden inputs contain non-visual information-->
                     <!-- here we redirect the browser to a URL after the submit button is clicked -->
@@ -19,20 +19,19 @@
                 <p>
                     
                     <label class="titletextfield" for="title">Blog Title</label>
-                    <input class="titletextfield" type="text" id="title" name="title" value='<%=editdetails.title%>'required>
+                    <input class="titletextfield" type="text" id="title" name="title" value="<%=editdetails.title%>" required>
                     <label class="snippettextfield" for="snippet">Blog Snippet:</label>
-                    <input class="snippettextfield" type="text" id="snippet" name="snippet" value='<%=editdetails.snippet%>' required>
+                    <input class="snippettextfield" type="text" id="snippet" name="snippet" value="<%=editdetails.snippet%>" required>
                     <label for="body">Blog Body:</label>
-                    <textarea id="body"  name="body" rows="12" required>
-                    
-                    </textarea>
+                    <textarea id="body" required name="body" rows="12"></textarea>
                     <div class="form-buttons">
                     <input type="submit" value="submit"/>
                     <input type="reset" value="clear"/>
-                    <a href=""><button>Cancel</button></a>
+                    
                     </div>
                 </p>
             </form>
+            <a href="/"><button>Cancel</button></a>
             </center>
         </main>
         
