@@ -26,6 +26,8 @@ app.use(cookieParser());
 //Register View Engine/ejs
 app.set('view engine', 'ejs');
 
+app.use(express.static('public'));
+
 // Listen For Requests
 app.listen(8000, 'localhost', () =>{
     console.log('Server is Running')
@@ -90,10 +92,12 @@ app.get('/about', protectedRoute, (req, res)=> {
     console.log('The User is on the About Page');
 });
 
-app.get('/edit', protectedRoute, (req, res)=> {
-    res.render('editPage.ejs', { title: 'Edit Page'});
-
-    });
+app.get('/edit/:id', protectedRoute, (req, res)=> {
+    const id = req.params.id;
+    Forum.findById(id).then((result)=>{
+        res.render('editPage.ejs', { title: 'Edit Page', editdetails: result});
+    })
+});
 
 
 // Request For a Specific Document in The Database
